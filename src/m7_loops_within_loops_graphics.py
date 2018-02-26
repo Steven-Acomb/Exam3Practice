@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Stephen Acomb.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -89,7 +89,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -101,6 +101,21 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+    for k in range(n):
+        for j in range(n-k):
+            point1 = rg.Point(point.x + 2*radius*j + k*radius, point.y+2*radius*k)
+            circle = rg.Circle(point1,radius)
+            circle.fill_color = color
+            circle.attach_to(window)
+            window.render()
+        for j in range(n-k):
+            point1 = rg.Point(point.x + 2*radius*j + k*radius,
+                              point.y-2*radius*k + n*radius*4)
+            circle = rg.Circle(point1,radius)
+            circle.fill_color = color
+            circle.attach_to(window)
+            window.render()
+
 
 
 def run_test_many_hourglasses():
@@ -163,7 +178,7 @@ def many_hourglasses(window, square, m, colors):
     each of which denotes a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -179,7 +194,8 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
-
+    for k in range(len(colors)):
+        hourglass(window,k,square.center,square.length_of_each_side,colors[k])
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
